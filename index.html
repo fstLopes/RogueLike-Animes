@@ -3,19 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#100e18" />
+    <meta name="theme-color" content="#0b0e18" />
     <title>Torre do Eclipse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Inter:wght@400;500;600;700;800&display=swap"
+    />
   </head>
   <body>
     <div class="frame">
-      <header>
-        <div class="brand"><span class="sigil" aria-hidden="true">◐</span>Torre do Eclipse</div>
-        <div class="head-actions">
-          <span class="tag">Modo Normal</span>
-          <button id="profile" class="button" data-acao="perfil" hidden>Perfil</button>
-          <button id="bag" class="button" hidden>Mochila</button>
-          <button id="reset" class="button" hidden>Recomeçar</button>
+      <header class="topo">
+        <div class="marca">
+          <span class="eclipse girando" aria-hidden="true"></span>
+          <div><span class="marca-nome">Torre do Eclipse</span><span class="marca-modo">Roguelike · Modo Normal</span></div>
         </div>
+        <nav class="topo-acoes" aria-label="Menu do jogo">
+          <div class="grupo-nav">
+            <button id="profile" type="button" class="botao-nav" data-acao="perfil" aria-expanded="false" hidden>Perfil</button>
+            <button id="bag" type="button" class="botao-nav" aria-expanded="false" hidden>Mochila</button>
+            <button id="account" type="button" class="botao-nav" data-acao="conta" aria-expanded="false">Conta e save</button>
+          </div>
+          <button id="reset" type="button" class="button secundario" hidden>Recomeçar</button>
+        </nav>
       </header>
       <main class="layout">
         <section id="stage" class="panel stage" aria-label="Jornada"></section>
