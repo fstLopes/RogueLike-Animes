@@ -1,0 +1,313 @@
+/* Estrutura da página: cabeçalho, palco + HUD lateral, trilha da torre. */
+.frame {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 clamp(12px, 2.4vw, 28px) 40px;
+}
+
+/* ---- Cabeçalho ---- */
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 18px;
+  flex-wrap: wrap;
+  padding: 16px 0;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--borda);
+}
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.marca .eclipse {
+  --tam: 38px;
+}
+.marca-nome {
+  display: block;
+  font: 800 30px/0.95 var(--fonte-titulo);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--texto);
+  text-shadow: 0 0 24px #a995ff40;
+}
+.marca-modo {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--texto-3);
+}
+.topo-acoes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.grupo-nav {
+  display: flex;
+  padding: 4px;
+  gap: 4px;
+  border: 1px solid var(--borda);
+  border-radius: 11px;
+  background: var(--painel);
+}
+.botao-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 7px 13px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--texto);
+  font-weight: 650;
+  white-space: nowrap;
+}
+.botao-nav[hidden] {
+  display: none;
+}
+.botao-nav .ico {
+  color: var(--magia);
+  font-size: 14px;
+}
+.botao-nav:hover {
+  background: var(--painel-2);
+  border-color: var(--borda-forte);
+}
+.botao-nav[aria-expanded="true"] {
+  background: var(--magia-escura);
+  border-color: var(--magia);
+}
+.botao-nav .contador {
+  min-width: 20px;
+  padding: 1px 6px;
+  border-radius: 99px;
+  background: var(--ouro);
+  color: #22160a;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+#reset {
+  min-height: 38px;
+  font-size: 14px;
+}
+#reset:not(:disabled):hover {
+  border-color: var(--vida);
+  color: var(--vida);
+}
+
+/* ---- Palco + HUD ---- */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 20px;
+  align-items: start;
+}
+.stage {
+  min-width: 0;
+}
+.side {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-width: 0;
+}
+.hud-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.hud-titulo h3 {
+  font: 800 20px/1 var(--fonte-titulo);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Personagem */
+.hud-personagem {
+  display: grid;
+  gap: 12px;
+}
+.nivel {
+  font: 800 13px/1 var(--fonte-texto);
+  color: #22160a;
+  background: var(--ouro);
+  border-radius: 6px;
+  padding: 5px 8px;
+  clip-path: var(--corte);
+  padding-right: 14px;
+}
+.atributos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 2px;
+}
+.atributo {
+  display: grid;
+  justify-items: center;
+  gap: 1px;
+  padding: 7px 4px;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background: #0b0e1888;
+}
+.atributo small {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.atributo strong {
+  font: 700 17px/1.1 var(--fonte-texto);
+  font-variant-numeric: tabular-nums;
+}
+.atributo.moedas strong {
+  color: var(--ouro);
+}
+
+/* Trilha da torre */
+.trilha {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.trilha-regiao small {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.trilha-andares {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+.trilha-andares::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 17px;
+  height: 2px;
+  background: var(--borda);
+}
+.trilha-andar {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--texto-3);
+}
+.no {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--borda-forte);
+  background: var(--painel);
+  font: 700 14px/1 var(--fonte-texto);
+  color: var(--texto-3);
+}
+.trilha-andar.chefe .no {
+  border-radius: 7px;
+  transform: rotate(45deg) scale(0.86);
+  border-color: #8a4a5c;
+}
+.trilha-andar.chefe .no > span {
+  transform: rotate(-45deg);
+}
+.trilha-andar.concluido .no {
+  border-color: var(--cura);
+  background: #183a33;
+  color: var(--cura);
+}
+.trilha-andar.atual .no {
+  border-color: var(--ouro);
+  background: var(--ouro);
+  color: #22160a;
+  box-shadow:
+    0 0 0 4px #ffc77933,
+    0 0 18px #ffc77966;
+}
+.trilha-andar.atual {
+  color: var(--ouro);
+  font-weight: 700;
+}
+.trilha-andar.concluido {
+  color: var(--cura);
+}
+
+/* Save */
+.status-save {
+  font-size: 13px;
+}
+
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .side {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .topo {
+    padding: 12px 0;
+    margin-bottom: 12px;
+  }
+  .marca-nome {
+    font-size: 25px;
+  }
+  .topo-acoes,
+  .grupo-nav {
+    width: 100%;
+  }
+  .grupo-nav {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+  }
+  .botao-nav {
+    justify-content: center;
+    padding: 7px 6px;
+    font-size: 13px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.15;
+  }
+  .botao-nav .ico {
+    display: none;
+  }
+  #reset {
+    margin-left: auto;
+  }
+  .side {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.item-art.icone-expansao {
+  display: inline-grid;
+  place-items: center;
+  background: radial-gradient(circle, color-mix(in srgb, var(--tom-icone) 22%, #141929), #131524 78%);
+  color: var(--tom-icone);
+  font-size: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--tom-icone) 55%, #141929);
+  text-shadow: 0 0 10px currentColor;
+}

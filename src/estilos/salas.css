@@ -1,0 +1,528 @@
+/* Salas (rota, evento, loja, descanso, recompensa), cartas de item e telas finais. */
+
+/* ---- Raridade: borda, rótulo e brilho ---- */
+.r0 {
+  --rarity: var(--r-comum);
+}
+.r1 {
+  --rarity: var(--r-rara);
+}
+.r2 {
+  --rarity: var(--r-epica);
+}
+.r3 {
+  --rarity: var(--r-lendaria);
+}
+.r4 {
+  --rarity: var(--r-mitica);
+}
+.selo-raridade {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid var(--rarity, var(--borda-forte));
+  border-radius: 5px;
+  color: var(--rarity, var(--texto-2));
+  background: color-mix(in srgb, var(--rarity, #fff) 10%, transparent);
+  font: 800 10.5px/1.4 var(--fonte-texto);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---- Histórias e painel de escolhas ---- */
+.story {
+  padding: 12px 15px;
+  border: 1px solid var(--borda);
+  border-left: 4px solid var(--ouro);
+  border-radius: 4px 10px 10px 4px;
+  background: #ffc77908;
+  color: var(--texto);
+}
+.story strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ouro);
+}
+.escolhas {
+  --acento: var(--ouro);
+  display: grid;
+  gap: 14px;
+  padding: clamp(14px, 2vw, 18px);
+  border: 1px solid var(--borda);
+  border-top: 3px solid var(--acento);
+  border-radius: 12px;
+  background: radial-gradient(ellipse at 0% 0%, color-mix(in srgb, var(--acento) 10%, transparent), transparent 55%), var(--painel);
+}
+.escolhas-texto {
+  display: grid;
+  gap: 6px;
+}
+.escolhas-texto .eyebrow {
+  color: var(--acento);
+}
+.escolhas-texto p {
+  color: var(--texto);
+  max-width: 70ch;
+}
+.escolhas-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 12px;
+  border-top: 1px solid var(--borda);
+}
+.acento-evento {
+  --acento: var(--sala-evento);
+}
+.acento-loja {
+  --acento: var(--sala-loja);
+}
+.acento-descanso {
+  --acento: var(--sala-descanso);
+}
+.bolsa {
+  color: var(--texto-2);
+}
+.bolsa strong {
+  color: var(--ouro);
+}
+
+/* ---- Cartas ---- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+  gap: 10px;
+}
+:where(.card) {
+  --rarity: var(--borda-forte);
+}
+.card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid var(--borda);
+  border-top: 3px solid var(--rarity);
+  border-radius: 10px;
+  background: linear-gradient(160deg, var(--painel-2), var(--painel));
+  color: var(--texto);
+  text-align: left;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+button.card:not(:disabled):hover {
+  border-color: var(--rarity);
+  background: linear-gradient(160deg, var(--painel-3), var(--painel-2));
+}
+.card strong {
+  font-size: 16px;
+  line-height: 1.2;
+}
+.card p {
+  font-size: 13px;
+  color: var(--texto-2);
+}
+.carta-topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.card .item-art {
+  width: 64px;
+  height: 64px;
+  border-color: color-mix(in srgb, var(--rarity) 60%, var(--borda));
+}
+.preco {
+  font-weight: 800;
+  color: var(--ouro);
+}
+.preco.caro {
+  color: #ffb3bb;
+}
+.carta-botoes {
+  display: grid;
+  gap: 6px;
+  margin-top: 4px;
+}
+.carta-rota {
+  min-height: 130px;
+}
+.rota-icone {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--rarity);
+  color: var(--rarity);
+  font-size: 20px;
+}
+.rota-combate {
+  --rarity: #ff9d7a;
+}
+.rota-chefe {
+  --rarity: var(--vida);
+}
+.rota-evento {
+  --rarity: var(--sala-evento);
+}
+.rota-loja {
+  --rarity: var(--sala-loja);
+}
+.rota-descanso {
+  --rarity: var(--sala-descanso);
+}
+
+/* Lendárias e Míticas */
+.discovery {
+  position: relative;
+  overflow: hidden;
+  border-color: color-mix(in srgb, var(--rarity) 55%, var(--borda));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--rarity) 35%, transparent),
+    0 0 26px color-mix(in srgb, var(--rarity) 22%, transparent);
+}
+.discovery::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, color-mix(in srgb, var(--rarity) 14%, transparent) 50%, transparent 70%);
+}
+.discovery.r4 {
+  background: linear-gradient(160deg, #3a1838, #1c1830 60%, #241c40);
+}
+.discovery.r3 {
+  background: linear-gradient(160deg, #3a2c18, #1c1d2c 60%, #1e2236);
+}
+.headline-drop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--rarity, var(--cura));
+  border-radius: 10px;
+  background: var(--painel-2);
+}
+.headline-drop .item-art {
+  width: 52px;
+  height: 52px;
+}
+.headline-drop p {
+  font-size: 13px;
+  color: var(--texto-2);
+}
+.rarity-stamp {
+  color: var(--rarity);
+  letter-spacing: 0.13em;
+  font-weight: 800;
+  font-size: 10.5px;
+  text-transform: uppercase;
+}
+
+/* ---- Cenas das salas (acento no céu e no símbolo) ---- */
+.arena.sala-loja::before {
+  box-shadow:
+    0 0 0 3px #ffe0ad,
+    0 0 40px 12px #ffc77999,
+    0 0 110px 40px #ffc77930;
+}
+.arena.sala-loja .enemy-symbol {
+  color: var(--ouro);
+  text-shadow: 0 0 18px #ffc779;
+}
+.arena.sala-evento .enemy-symbol {
+  color: var(--sala-evento);
+  text-shadow: 0 0 18px var(--sala-evento);
+}
+.arena.sala-descanso {
+  background:
+    linear-gradient(0deg, #0b0e18 0%, transparent 70%), radial-gradient(ellipse at 22% 100%, #ff9d5a40, transparent 45%),
+    linear-gradient(150deg, #10172a 0%, #142233 55%, #1a2230 100%);
+}
+.arena.sala-descanso .enemy-symbol {
+  color: var(--sala-descanso);
+  text-shadow: 0 0 18px var(--sala-descanso);
+}
+.arena.sala-recompensa .enemy-symbol {
+  color: var(--ouro);
+  text-shadow: 0 0 22px #ffc779;
+}
+
+/* ---- Telas finais (título, vitória, derrota) ---- */
+.tela-final {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+  padding: clamp(28px, 5vw, 56px) clamp(16px, 4vw, 48px) clamp(24px, 4vw, 40px);
+  text-align: center;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 18%, #a995ff2b, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 26%, #ffc7791c, transparent 70%),
+    linear-gradient(180deg, #121730 0%, var(--painel) 55%, #10131f 100%);
+}
+.final-cena {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 230px;
+}
+.linhas-velocidade {
+  position: absolute;
+  inset: -30px -40px;
+  z-index: -1;
+  background: repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg 5deg, #c9bcff12 5.2deg 5.6deg, transparent 6deg 9deg);
+  mask-image: radial-gradient(circle at 50% 50%, transparent 22%, #000 46%, transparent 74%);
+}
+.faiscas {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle, #ffe0ad 0 1.5px, transparent 2.5px), radial-gradient(circle, #a995ff 0 1.5px, transparent 2.5px),
+    radial-gradient(circle, #fff 0 1px, transparent 2px);
+  background-size:
+    90px 70px,
+    130px 110px,
+    60px 90px;
+  background-position:
+    10px 20px,
+    40px 0,
+    0 30px;
+  mask-image: radial-gradient(circle at 50% 50%, transparent 25%, #000 45%, transparent 75%);
+  opacity: 0.7;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .faiscas {
+    animation: subir 9s linear infinite;
+  }
+}
+@keyframes subir {
+  to {
+    background-position:
+      10px -50px,
+      40px -110px,
+      0 -60px;
+  }
+}
+.final-texto {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  max-width: 760px;
+}
+.final-texto p {
+  color: var(--texto-2);
+  font-size: 16px;
+}
+.final-texto .eyebrow {
+  padding: 4px 16px 4px 12px;
+  background: #0b0e18cc;
+  border-left: 3px solid var(--ouro);
+  clip-path: var(--corte);
+}
+.titulo-impacto {
+  font: italic 800 clamp(46px, 9vw, 104px) / 0.9 var(--fonte-titulo);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--texto);
+  text-shadow:
+    4px 4px 0 #0b0e18,
+    0 0 40px #ffc77955;
+  transform: skewX(-6deg);
+}
+.vitoria .titulo-impacto {
+  background: linear-gradient(180deg, #fff8e8 20%, var(--ouro) 70%, #e89a4a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(4px 4px 0 #0b0e18) drop-shadow(0 0 26px #ffc77955);
+}
+.derrota {
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 18%, #ff727e22, transparent 70%), linear-gradient(180deg, #1a1222 0%, var(--painel) 60%);
+}
+.derrota .final-cena {
+  min-height: 150px;
+}
+.derrota .eclipse {
+  filter: saturate(0.4) hue-rotate(-30deg);
+  box-shadow:
+    0 0 0 3px #ff9aa3,
+    0 0 26px 6px #ff727e66;
+}
+.derrota .titulo-impacto {
+  color: #ffd9dc;
+  text-shadow:
+    4px 4px 0 #0b0e18,
+    0 0 30px #ff727e55;
+}
+.acoes-finais {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.resumo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  width: min(100%, 860px);
+}
+.resumo-item {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background: #0b0e18aa;
+  text-align: left;
+}
+.resumo-item small {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.resumo-item > strong {
+  font: 800 38px/1 var(--fonte-titulo);
+}
+.resumo-item > strong span {
+  font-size: 20px;
+  color: var(--texto-3);
+}
+.resumo-item.ouro > strong {
+  color: var(--ouro);
+}
+.resumo-item.destaque {
+  grid-column: span 2;
+  border-color: var(--rarity);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--rarity) 25%, transparent);
+}
+.resumo-recompensa {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.resumo-recompensa strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 16px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.resumo-recompensa .item-art {
+  width: 56px;
+  height: 56px;
+  border-color: var(--rarity);
+}
+.historico,
+.tela-final .log {
+  width: min(100%, 860px);
+  text-align: left;
+}
+.tela-final .log {
+  border-top: 1px solid var(--borda);
+  padding: 18px 0 0;
+}
+.historico-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+  padding: 0;
+  list-style: none;
+}
+.historico-lista li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+  background: #0b0e1888;
+  font-size: 13px;
+}
+.historico-lista li.chefe {
+  border-color: #8a4a5c;
+}
+.historico-andar {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 50%;
+  background: #183a33;
+  color: var(--cura);
+  font-weight: 800;
+  font-size: 12px;
+}
+.historico-sala {
+  color: var(--texto-2);
+}
+.fatos-titulo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--texto-2);
+}
+.fatos-titulo strong {
+  font: 800 22px/1 var(--fonte-titulo);
+  color: var(--ouro);
+  margin-right: 4px;
+}
+.centro {
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .final-cena {
+    min-height: 170px;
+  }
+  .final-cena .eclipse {
+    --tam: 130px !important;
+  }
+  .resumo {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .resumo-item {
+    padding: 12px 10px;
+  }
+  .resumo-item small {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  .resumo-item > strong {
+    font-size: 30px;
+  }
+  .resumo-item.destaque {
+    grid-column: 1 / -1;
+  }
+  .acoes-finais {
+    display: grid;
+    width: 100%;
+  }
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .escolhas-rodape {
+    display: grid;
+  }
+}

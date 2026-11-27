@@ -1,0 +1,1224 @@
+{
+  "project": "Torre do Eclipse",
+  "source": "Torre do Eclipse v2.1",
+  "purpose": "Registro proposto para associar fichas e efeitos aos eventos do jogo.",
+  "conventions": {
+    "identity": "IDs estáveis derivados do catálogo, independentes do ID do item na partida.",
+    "forms": "Use o mesmo ID da forma com entry, active ou exit. A forma perde o visual ao expirar ou ao terminar a luta.",
+    "reactions": [
+      "hit",
+      "blocked",
+      "dodged",
+      "immune",
+      "finisher"
+    ],
+    "reactionRule": "Use a reação como parâmetro do efeito quando o motor fornecer esse resultado.",
+    "implementation": "Os IDs enemy.* são pontos de integração para ações já presentes na lógica. O HTML atual não tem animação própria para cada inimigo."
+  },
+  "total": 130,
+  "count": {
+    "basic": 2,
+    "weapon": 21,
+    "power": 32,
+    "special": 4,
+    "weapon_skill": 7,
+    "form": 14,
+    "consumable": 4,
+    "enemy": 44,
+    "reveal": 2
+  },
+  "animations": [
+    {
+      "id": "action.punch",
+      "category": "basic",
+      "name": "Soco",
+      "trigger": "Ataque básico resolvido",
+      "damageType": "impact"
+    },
+    {
+      "id": "action.guard",
+      "category": "basic",
+      "name": "Defender",
+      "trigger": "Ação de defesa resolvida"
+    },
+    {
+      "id": "weapon.marine.basic",
+      "category": "weapon",
+      "name": "Sabre da Marinha",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "marine",
+      "item": "Sabre da Marinha",
+      "damageType": "cut"
+    },
+    {
+      "id": "weapon.dagger.basic",
+      "category": "weapon",
+      "name": "Adaga pirata",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "dagger",
+      "item": "Adaga pirata",
+      "damageType": "cut"
+    },
+    {
+      "id": "weapon.pistol.basic",
+      "category": "weapon",
+      "name": "Pistola de pederneira",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "pistol",
+      "item": "Pistola de pederneira",
+      "damageType": "shot"
+    },
+    {
+      "id": "weapon.kunai.basic",
+      "category": "weapon",
+      "name": "Kunai",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "kunai",
+      "item": "Kunai",
+      "damageType": "shot"
+    },
+    {
+      "id": "weapon.senbon.basic",
+      "category": "weapon",
+      "name": "Senbon",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "senbon",
+      "item": "Senbon",
+      "damageType": "shot"
+    },
+    {
+      "id": "weapon.zabuza.basic",
+      "category": "weapon",
+      "name": "Kubikiribōchō",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "zabuza",
+      "item": "Kubikiribōchō",
+      "damageType": "cut"
+    },
+    {
+      "id": "power.buggy.mao_separada",
+      "category": "power",
+      "name": "Mão Separada",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "buggy",
+      "item": "Bara Bara no Mi",
+      "damageType": "shot",
+      "baseDamage": 25,
+      "energy": 6
+    },
+    {
+      "id": "technique.buggy.esquiva_fragmentada",
+      "category": "special",
+      "name": "Esquiva Fragmentada",
+      "trigger": "Técnica especial ativada",
+      "catalogKey": "buggy",
+      "item": "Bara Bara no Mi",
+      "energy": 7,
+      "effect": "veil"
+    },
+    {
+      "id": "weapon.wado.basic",
+      "category": "weapon",
+      "name": "Wado Ichimonji",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "wado",
+      "item": "Wado Ichimonji",
+      "damageType": "cut"
+    },
+    {
+      "id": "weapon.wado.shishi_sonson",
+      "category": "weapon_skill",
+      "name": "Shishi Sonson",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "wado",
+      "item": "Wado Ichimonji",
+      "damageType": "cut",
+      "baseDamage": 31,
+      "energy": 8
+    },
+    {
+      "id": "technique.haki.visao_do_futuro",
+      "category": "special",
+      "name": "Visão do Futuro",
+      "trigger": "Técnica especial ativada",
+      "catalogKey": "haki",
+      "item": "Haki da Observação",
+      "energy": 6,
+      "effect": "veil"
+    },
+    {
+      "id": "weapon.nichirin.basic",
+      "category": "weapon",
+      "name": "Nichirin",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "nichirin",
+      "item": "Nichirin",
+      "damageType": "cut"
+    },
+    {
+      "id": "weapon.gloves.basic",
+      "category": "weapon",
+      "name": "Luvas de Roy Mustang",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "gloves",
+      "item": "Luvas de Roy Mustang",
+      "damageType": "fire"
+    },
+    {
+      "id": "weapon.gloves.ignicao",
+      "category": "weapon_skill",
+      "name": "Ignição",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "gloves",
+      "item": "Luvas de Roy Mustang",
+      "damageType": "fire",
+      "baseDamage": 25,
+      "energy": 7
+    },
+    {
+      "id": "weapon.dragon.basic",
+      "category": "weapon",
+      "name": "Dragon Slayer",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "dragon",
+      "item": "Dragon Slayer",
+      "damageType": "cut"
+    },
+    {
+      "id": "weapon.zange.basic",
+      "category": "weapon",
+      "name": "Zangetsu",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "zange",
+      "item": "Zangetsu",
+      "damageType": "cut"
+    },
+    {
+      "id": "weapon.zange.getsuga_tensho",
+      "category": "weapon_skill",
+      "name": "Getsuga Tenshō",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "zange",
+      "item": "Zangetsu",
+      "damageType": "energy",
+      "baseDamage": 37,
+      "energy": 9
+    },
+    {
+      "id": "weapon.saber.basic",
+      "category": "weapon",
+      "name": "Excalibur da Saber",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "saber",
+      "item": "Excalibur da Saber",
+      "damageType": "cut"
+    },
+    {
+      "id": "weapon.saber.excalibur",
+      "category": "weapon_skill",
+      "name": "Excalibur",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "saber",
+      "item": "Excalibur da Saber",
+      "damageType": "energy",
+      "baseDamage": 56,
+      "energy": 15
+    },
+    {
+      "id": "power.star.ora_ora",
+      "category": "power",
+      "name": "Ora Ora!",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "star",
+      "item": "Star Platinum",
+      "damageType": "impact",
+      "baseDamage": 31,
+      "energy": 7
+    },
+    {
+      "id": "technique.star.parada_temporal",
+      "category": "special",
+      "name": "Parada Temporal",
+      "trigger": "Técnica especial ativada",
+      "catalogKey": "star",
+      "item": "Star Platinum",
+      "energy": 12,
+      "effect": "stop"
+    },
+    {
+      "id": "power.ki.rajada_de_ki",
+      "category": "power",
+      "name": "Rajada de Ki",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "ki",
+      "item": "Ki Saiyajin",
+      "damageType": "energy",
+      "baseDamage": 27,
+      "energy": 6
+    },
+    {
+      "id": "form.super.super_saiyajin",
+      "category": "form",
+      "name": "Super Saiyajin",
+      "trigger": "Transformação ativada",
+      "catalogKey": "super",
+      "item": "Super Saiyajin",
+      "energy": 12,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "power.shadow.erga_se",
+      "category": "power",
+      "name": "Erga-se",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "shadow",
+      "item": "Poder do Monarca das Sombras",
+      "damageType": "shadow",
+      "baseDamage": 40,
+      "energy": 8
+    },
+    {
+      "id": "power.gum.gomu_gomu_no_pistol",
+      "category": "power",
+      "name": "Gomu Gomu no Pistol",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "gum",
+      "item": "Fruta do Luffy",
+      "damageType": "impact",
+      "baseDamage": 28,
+      "energy": 5
+    },
+    {
+      "id": "form.gum.gear_2",
+      "category": "form",
+      "name": "Gear 2",
+      "trigger": "Transformação ativada",
+      "catalogKey": "gum",
+      "item": "Fruta do Luffy",
+      "energy": 7,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "form.gum.gear_3",
+      "category": "form",
+      "name": "Gear 3",
+      "trigger": "Transformação ativada",
+      "catalogKey": "gum",
+      "item": "Fruta do Luffy",
+      "energy": 9,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "form.gum.gear_4",
+      "category": "form",
+      "name": "Gear 4",
+      "trigger": "Transformação ativada",
+      "catalogKey": "gum",
+      "item": "Fruta do Luffy",
+      "energy": 12,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "form.gum.gear_5",
+      "category": "form",
+      "name": "Gear 5",
+      "trigger": "Transformação ativada",
+      "catalogKey": "gum",
+      "item": "Fruta do Luffy",
+      "energy": 16,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "power.kurama.rajada_da_kurama",
+      "category": "power",
+      "name": "Rajada da Kurama",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "kurama",
+      "item": "Chakra da Kurama",
+      "damageType": "energy",
+      "baseDamage": 28,
+      "energy": 6
+    },
+    {
+      "id": "form.kurama.manto_da_kurama",
+      "category": "form",
+      "name": "Manto da Kurama",
+      "trigger": "Transformação ativada",
+      "catalogKey": "kurama",
+      "item": "Chakra da Kurama",
+      "energy": 10,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "form.kurama.modo_chakra_da_kurama",
+      "category": "form",
+      "name": "Modo Chakra da Kurama",
+      "trigger": "Transformação ativada",
+      "catalogKey": "kurama",
+      "item": "Chakra da Kurama",
+      "energy": 14,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "power.grimoire.corte_de_antimagia",
+      "category": "power",
+      "name": "Corte de Antimagia",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "grimoire",
+      "item": "Grimório de Cinco Folhas",
+      "damageType": "energy",
+      "baseDamage": 34,
+      "energy": 7
+    },
+    {
+      "id": "form.grimoire.black_asta",
+      "category": "form",
+      "name": "Black Asta",
+      "trigger": "Transformação ativada",
+      "catalogKey": "grimoire",
+      "item": "Grimório de Cinco Folhas",
+      "energy": 12,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "consumable.pill.use",
+      "category": "consumable",
+      "name": "Pílula de Soldado",
+      "trigger": "Consumível utilizado",
+      "catalogKey": "pill",
+      "item": "Pílula de Soldado"
+    },
+    {
+      "id": "power.mera.hiken",
+      "category": "power",
+      "name": "Hiken",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "mera",
+      "item": "Mera Mera no Mi",
+      "damageType": "fire",
+      "baseDamage": 35,
+      "energy": 8
+    },
+    {
+      "id": "power.hie.ice_saber",
+      "category": "power",
+      "name": "Ice Saber",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "hie",
+      "item": "Hie Hie no Mi",
+      "damageType": "cut",
+      "baseDamage": 29,
+      "energy": 7
+    },
+    {
+      "id": "technique.hie.corpo_de_gelo",
+      "category": "special",
+      "name": "Corpo de Gelo",
+      "trigger": "Técnica especial ativada",
+      "catalogKey": "hie",
+      "item": "Hie Hie no Mi",
+      "energy": 7,
+      "effect": "veil"
+    },
+    {
+      "id": "power.goro.el_thor",
+      "category": "power",
+      "name": "El Thor",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "goro",
+      "item": "Goro Goro no Mi",
+      "damageType": "energy",
+      "baseDamage": 38,
+      "energy": 9
+    },
+    {
+      "id": "form.goro.amaru",
+      "category": "form",
+      "name": "Amaru",
+      "trigger": "Transformação ativada",
+      "catalogKey": "goro",
+      "item": "Goro Goro no Mi",
+      "energy": 12,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "power.leopard.investida_do_leopardo",
+      "category": "power",
+      "name": "Investida do Leopardo",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "leopard",
+      "item": "Neko Neko no Mi, Modelo Leopardo",
+      "damageType": "impact",
+      "baseDamage": 21,
+      "energy": 5
+    },
+    {
+      "id": "form.leopard.leopardo_hibrido",
+      "category": "form",
+      "name": "Leopardo Híbrido",
+      "trigger": "Transformação ativada",
+      "catalogKey": "leopard",
+      "item": "Neko Neko no Mi, Modelo Leopardo",
+      "energy": 6,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "weapon.rukia.basic",
+      "category": "weapon",
+      "name": "Sode no Shirayuki",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "rukia",
+      "item": "Sode no Shirayuki",
+      "damageType": "cut"
+    },
+    {
+      "id": "weapon.rukia.tsugi_no_mai",
+      "category": "weapon_skill",
+      "name": "Tsugi no Mai",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "rukia",
+      "item": "Sode no Shirayuki",
+      "damageType": "energy",
+      "baseDamage": 33,
+      "energy": 8
+    },
+    {
+      "id": "weapon.elucidator.basic",
+      "category": "weapon",
+      "name": "Elucidator",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "elucidator",
+      "item": "Elucidator",
+      "damageType": "cut"
+    },
+    {
+      "id": "weapon.lostvayne.basic",
+      "category": "weapon",
+      "name": "Lostvayne",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "lostvayne",
+      "item": "Lostvayne",
+      "damageType": "cut"
+    },
+    {
+      "id": "weapon.gaebolg.basic",
+      "category": "weapon",
+      "name": "Gáe Bolg",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "gaebolg",
+      "item": "Gáe Bolg",
+      "damageType": "cut"
+    },
+    {
+      "id": "weapon.gaebolg.arremesso_carmesim",
+      "category": "weapon_skill",
+      "name": "Arremesso Carmesim",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "gaebolg",
+      "item": "Gáe Bolg",
+      "damageType": "shot",
+      "baseDamage": 39,
+      "energy": 9
+    },
+    {
+      "id": "weapon.umbrella.basic",
+      "category": "weapon",
+      "name": "Umbreaker",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "umbrella",
+      "item": "Umbreaker",
+      "damageType": "impact"
+    },
+    {
+      "id": "weapon.playful.basic",
+      "category": "weapon",
+      "name": "Nuvem Brincalhona",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "playful",
+      "item": "Nuvem Brincalhona",
+      "damageType": "impact"
+    },
+    {
+      "id": "power.reagent.transmutacao_amplificada",
+      "category": "power",
+      "name": "Transmutação Amplificada",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "reagent",
+      "item": "Pedra Filosofal",
+      "damageType": "energy",
+      "baseDamage": 39,
+      "energy": 7
+    },
+    {
+      "id": "weapon.frieren.basic",
+      "category": "weapon",
+      "name": "Cajado de Frieren",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "frieren",
+      "item": "Cajado de Frieren",
+      "damageType": "energy"
+    },
+    {
+      "id": "weapon.frieren.zoltraak",
+      "category": "weapon_skill",
+      "name": "Zoltraak",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "frieren",
+      "item": "Cajado de Frieren",
+      "damageType": "energy",
+      "baseDamage": 32,
+      "energy": 7
+    },
+    {
+      "id": "power.chain.corte_de_corrente",
+      "category": "power",
+      "name": "Corte de Corrente",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "chain",
+      "item": "Coração do Pochita",
+      "damageType": "cut",
+      "baseDamage": 26,
+      "energy": 6
+    },
+    {
+      "id": "form.chain.forma_motosserra",
+      "category": "form",
+      "name": "Forma Motosserra",
+      "trigger": "Transformação ativada",
+      "catalogKey": "chain",
+      "item": "Coração do Pochita",
+      "energy": 8,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "power.mob.telecinese",
+      "category": "power",
+      "name": "Telecinese",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "mob",
+      "item": "Poder Psíquico de Mob",
+      "damageType": "impact",
+      "baseDamage": 25,
+      "energy": 6
+    },
+    {
+      "id": "form.mob.explosao_de_100",
+      "category": "form",
+      "name": "Explosão de 100%",
+      "trigger": "Transformação ativada",
+      "catalogKey": "mob",
+      "item": "Poder Psíquico de Mob",
+      "energy": 12,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "power.ghoul.investida_rinkaku",
+      "category": "power",
+      "name": "Investida Rinkaku",
+      "trigger": "Técnica ofensiva resolvida",
+      "catalogKey": "ghoul",
+      "item": "Kakuhō de Rize",
+      "damageType": "impact",
+      "baseDamage": 24,
+      "energy": 6
+    },
+    {
+      "id": "form.ghoul.kagune_rinkaku",
+      "category": "form",
+      "name": "Kagune Rinkaku",
+      "trigger": "Transformação ativada",
+      "catalogKey": "ghoul",
+      "item": "Kakuhō de Rize",
+      "energy": 7,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "weapon.disk.basic",
+      "category": "weapon",
+      "name": "Disco de Duelo",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "disk",
+      "item": "Disco de Duelo",
+      "damageType": "energy"
+    },
+    {
+      "id": "weapon.shield.basic",
+      "category": "weapon",
+      "name": "Escudo de Leônidas",
+      "trigger": "Ataque da arma resolvido",
+      "catalogKey": "shield",
+      "item": "Escudo de Leônidas",
+      "damageType": "impact"
+    },
+    {
+      "id": "consumable.senzu.use",
+      "category": "consumable",
+      "name": "Semente dos Deuses",
+      "trigger": "Consumível utilizado",
+      "catalogKey": "senzu",
+      "item": "Semente dos Deuses"
+    },
+    {
+      "id": "consumable.ration.use",
+      "category": "consumable",
+      "name": "Ração de emergência da Tropa",
+      "trigger": "Consumível utilizado",
+      "catalogKey": "ration",
+      "item": "Ração de emergência da Tropa"
+    },
+    {
+      "id": "form.sage.modo_sabio",
+      "category": "form",
+      "name": "Modo Sábio",
+      "trigger": "Transformação ativada",
+      "catalogKey": "sage",
+      "item": "Modo Sábio dos Sapos",
+      "energy": 9,
+      "phases": [
+        "entry",
+        "active",
+        "exit"
+      ]
+    },
+    {
+      "id": "enemy.marinheiro.basic",
+      "category": "enemy",
+      "name": "Marinheiro · ataque",
+      "trigger": "Ataque normal resolvido",
+      "floor": 1
+    },
+    {
+      "id": "enemy.marinheiro.heavy",
+      "category": "enemy",
+      "name": "Marinheiro · Golpe pesado",
+      "trigger": "Ataque pesado resolvido",
+      "floor": 1
+    },
+    {
+      "id": "enemy.pirata_de_buggy.basic",
+      "category": "enemy",
+      "name": "Pirata de Buggy · ataque",
+      "trigger": "Ataque normal resolvido",
+      "floor": 2
+    },
+    {
+      "id": "enemy.pirata_de_buggy.heavy",
+      "category": "enemy",
+      "name": "Pirata de Buggy · Golpe pesado",
+      "trigger": "Ataque pesado resolvido",
+      "floor": 2
+    },
+    {
+      "id": "enemy.atirador_pirata.basic",
+      "category": "enemy",
+      "name": "Atirador pirata · ataque",
+      "trigger": "Ataque normal resolvido",
+      "floor": 3
+    },
+    {
+      "id": "enemy.atirador_pirata.heavy",
+      "category": "enemy",
+      "name": "Atirador pirata · Golpe pesado",
+      "trigger": "Ataque pesado resolvido",
+      "floor": 3
+    },
+    {
+      "id": "enemy.espadachim_pirata.basic",
+      "category": "enemy",
+      "name": "Espadachim pirata · ataque",
+      "trigger": "Ataque normal resolvido",
+      "floor": 4
+    },
+    {
+      "id": "enemy.espadachim_pirata.heavy",
+      "category": "enemy",
+      "name": "Espadachim pirata · Golpe pesado",
+      "trigger": "Ataque pesado resolvido",
+      "floor": 4
+    },
+    {
+      "id": "enemy.buggy.basic",
+      "category": "enemy",
+      "name": "Buggy · ataque",
+      "trigger": "Ataque normal resolvido",
+      "floor": 5
+    },
+    {
+      "id": "enemy.buggy.heavy",
+      "category": "enemy",
+      "name": "Buggy · Golpe pesado",
+      "trigger": "Ataque pesado resolvido",
+      "floor": 5
+    },
+    {
+      "id": "enemy.ninja_renegado.basic",
+      "category": "enemy",
+      "name": "Ninja renegado · ataque",
+      "trigger": "Ataque normal resolvido",
+      "floor": 6
+    },
+    {
+      "id": "enemy.ninja_renegado.heavy",
+      "category": "enemy",
+      "name": "Ninja renegado · Golpe pesado",
+      "trigger": "Ataque pesado resolvido",
+      "floor": 6
+    },
+    {
+      "id": "enemy.ninja_da_nevoa.basic",
+      "category": "enemy",
+      "name": "Ninja da Névoa · ataque",
+      "trigger": "Ataque normal resolvido",
+      "floor": 7
+    },
+    {
+      "id": "enemy.ninja_da_nevoa.heavy",
+      "category": "enemy",
+      "name": "Ninja da Névoa · Golpe pesado",
+      "trigger": "Ataque pesado resolvido",
+      "floor": 7
+    },
+    {
+      "id": "enemy.usuario_de_senbon.basic",
+      "category": "enemy",
+      "name": "Usuário de senbon · ataque",
+      "trigger": "Ataque normal resolvido",
+      "floor": 8
+    },
+    {
+      "id": "enemy.usuario_de_senbon.heavy",
+      "category": "enemy",
+      "name": "Usuário de senbon · Golpe pesado",
+      "trigger": "Ataque pesado resolvido",
+      "floor": 8
+    },
+    {
+      "id": "enemy.espadachim_da_nevoa.basic",
+      "category": "enemy",
+      "name": "Espadachim da Névoa · ataque",
+      "trigger": "Ataque normal resolvido",
+      "floor": 9
+    },
+    {
+      "id": "enemy.espadachim_da_nevoa.heavy",
+      "category": "enemy",
+      "name": "Espadachim da Névoa · Golpe pesado",
+      "trigger": "Ataque pesado resolvido",
+      "floor": 9
+    },
+    {
+      "id": "enemy.zabuza.basic",
+      "category": "enemy",
+      "name": "Zabuza · ataque",
+      "trigger": "Ataque normal resolvido",
+      "floor": 10
+    },
+    {
+      "id": "enemy.zabuza.heavy",
+      "category": "enemy",
+      "name": "Zabuza · Emboscada na névoa",
+      "trigger": "Ataque pesado resolvido",
+      "floor": 10
+    },
+    {
+      "id": "enemy.buggy.split",
+      "category": "enemy",
+      "name": "Buggy · Separação do corpo",
+      "trigger": "Turno de separação resolvido",
+      "floor": 5
+    },
+    {
+      "id": "enemy.zabuza.mist",
+      "category": "enemy",
+      "name": "Zabuza · Névoa",
+      "trigger": "Turno de preparação da emboscada",
+      "floor": 10
+    },
+    {
+      "id": "loot.legendary.reveal",
+      "category": "reveal",
+      "name": "Revelação Lendária",
+      "trigger": "Primeira exibição do item na oferta ou no drop",
+      "rarity": "Lendária"
+    },
+    {
+      "id": "loot.mythic.reveal",
+      "category": "reveal",
+      "name": "Revelação Mítica",
+      "trigger": "Primeira exibição do item na oferta ou no drop",
+      "rarity": "Mítica"
+    },
+    {
+      "id": "power.resp_agua.roda_d_agua",
+      "category": "power",
+      "name": "Roda d’Água",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:resp_agua",
+      "catalogKey": "resp_agua"
+    },
+    {
+      "id": "power.resp_chamas.mar_de_chamas",
+      "category": "power",
+      "name": "Mar de Chamas",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:resp_chamas",
+      "catalogKey": "resp_chamas"
+    },
+    {
+      "id": "power.resp_trovao.estrondo_e_relampago",
+      "category": "power",
+      "name": "Estrondo e Relâmpago",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:resp_trovao",
+      "catalogKey": "resp_trovao"
+    },
+    {
+      "id": "power.resp_fera.presas_duplas",
+      "category": "power",
+      "name": "Presas Duplas",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:resp_fera",
+      "catalogKey": "resp_fera"
+    },
+    {
+      "id": "power.resp_inseto.danca_da_borboleta",
+      "category": "power",
+      "name": "Dança da Borboleta",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:resp_inseto",
+      "catalogKey": "resp_inseto"
+    },
+    {
+      "id": "power.resp_nevoa.nuvens_obscuras",
+      "category": "power",
+      "name": "Nuvens Obscuras",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:resp_nevoa",
+      "catalogKey": "resp_nevoa"
+    },
+    {
+      "id": "power.resp_vento.redemoinho_de_poeira",
+      "category": "power",
+      "name": "Redemoinho de Poeira",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:resp_vento",
+      "catalogKey": "resp_vento"
+    },
+    {
+      "id": "power.resp_pedra.serpentinita_bipolar",
+      "category": "power",
+      "name": "Serpentinita Bipolar",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:resp_pedra",
+      "catalogKey": "resp_pedra"
+    },
+    {
+      "id": "power.resp_sol.danca_do_deus_do_fogo",
+      "category": "power",
+      "name": "Dança do Deus do Fogo",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:resp_sol",
+      "catalogKey": "resp_sol"
+    },
+    {
+      "id": "power.resp_lua.lua_negra_palacio_noturno",
+      "category": "power",
+      "name": "Lua Negra · Palácio Noturno",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:resp_lua",
+      "catalogKey": "resp_lua"
+    },
+    {
+      "id": "power.db_kame.onda_kamehameha",
+      "category": "power",
+      "name": "Onda Kamehameha",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:db_kame",
+      "catalogKey": "db_kame"
+    },
+    {
+      "id": "power.db_galick.canhao_galick",
+      "category": "power",
+      "name": "Canhão Galick",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:db_galick",
+      "catalogKey": "db_galick"
+    },
+    {
+      "id": "power.db_kienzan.disco_cortante",
+      "category": "power",
+      "name": "Disco Cortante",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:db_kienzan",
+      "catalogKey": "db_kienzan"
+    },
+    {
+      "id": "power.db_makanko.canhao_de_feixe_especial",
+      "category": "power",
+      "name": "Canhão de Feixe Especial",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:db_makanko",
+      "catalogKey": "db_makanko"
+    },
+    {
+      "id": "power.db_big_bang.explosao_big_bang",
+      "category": "power",
+      "name": "Explosão Big Bang",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:db_big_bang",
+      "catalogKey": "db_big_bang"
+    },
+    {
+      "id": "power.db_genki.esfera_do_espirito",
+      "category": "power",
+      "name": "Esfera do Espírito",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:db_genki",
+      "catalogKey": "db_genki"
+    },
+    {
+      "id": "power.db_final_flash.clarao_final",
+      "category": "power",
+      "name": "Clarão Final",
+      "trigger": "Técnica ofensiva resolvida",
+      "engineId": "habilidade:db_final_flash",
+      "catalogKey": "db_final_flash"
+    },
+    {
+      "id": "consumable.db_capsula.use",
+      "category": "consumable",
+      "name": "Cápsula de Emergência",
+      "trigger": "Consumível usado",
+      "engineId": "consumivel:db_capsula",
+      "catalogKey": "db_capsula"
+    },
+    {
+      "id": "enemy.demonio_do_portao.basic",
+      "category": "enemy",
+      "name": "Demônio do Portão · Ataque",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:ataque",
+      "floor": 11
+    },
+    {
+      "id": "enemy.demonio_do_portao.heavy",
+      "category": "enemy",
+      "name": "Demônio do Portão · Golpe pesado",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:pesado",
+      "floor": 11
+    },
+    {
+      "id": "enemy.rui.basic",
+      "category": "enemy",
+      "name": "Rui · Ataque",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:ataque",
+      "floor": 12
+    },
+    {
+      "id": "enemy.rui.heavy",
+      "category": "enemy",
+      "name": "Rui · Golpe pesado",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:pesado",
+      "floor": 12
+    },
+    {
+      "id": "enemy.daki.basic",
+      "category": "enemy",
+      "name": "Daki · Ataque",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:ataque",
+      "floor": 13
+    },
+    {
+      "id": "enemy.daki.heavy",
+      "category": "enemy",
+      "name": "Daki · Golpe pesado",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:pesado",
+      "floor": 13
+    },
+    {
+      "id": "enemy.gyokko.basic",
+      "category": "enemy",
+      "name": "Gyokko · Ataque",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:ataque",
+      "floor": 14
+    },
+    {
+      "id": "enemy.gyokko.heavy",
+      "category": "enemy",
+      "name": "Gyokko · Golpe pesado",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:pesado",
+      "floor": 14
+    },
+    {
+      "id": "enemy.kokushibo.basic",
+      "category": "enemy",
+      "name": "Kokushibo · Ataque",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:ataque",
+      "floor": 15
+    },
+    {
+      "id": "enemy.kokushibo.heavy",
+      "category": "enemy",
+      "name": "Kokushibo · Golpe pesado",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:15:pesado",
+      "floor": 15
+    },
+    {
+      "id": "enemy.saibaman.basic",
+      "category": "enemy",
+      "name": "Saibaman · Ataque",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:ataque",
+      "floor": 16
+    },
+    {
+      "id": "enemy.saibaman.heavy",
+      "category": "enemy",
+      "name": "Saibaman · Golpe pesado",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:pesado",
+      "floor": 16
+    },
+    {
+      "id": "enemy.raditz.basic",
+      "category": "enemy",
+      "name": "Raditz · Ataque",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:ataque",
+      "floor": 17
+    },
+    {
+      "id": "enemy.raditz.heavy",
+      "category": "enemy",
+      "name": "Raditz · Golpe pesado",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:pesado",
+      "floor": 17
+    },
+    {
+      "id": "enemy.nappa.basic",
+      "category": "enemy",
+      "name": "Nappa · Ataque",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:ataque",
+      "floor": 18
+    },
+    {
+      "id": "enemy.nappa.heavy",
+      "category": "enemy",
+      "name": "Nappa · Golpe pesado",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:pesado",
+      "floor": 18
+    },
+    {
+      "id": "enemy.androide_18.basic",
+      "category": "enemy",
+      "name": "Androide 18 · Ataque",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:ataque",
+      "floor": 19
+    },
+    {
+      "id": "enemy.androide_18.heavy",
+      "category": "enemy",
+      "name": "Androide 18 · Golpe pesado",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:pesado",
+      "floor": 19
+    },
+    {
+      "id": "enemy.vegeta.basic",
+      "category": "enemy",
+      "name": "Vegeta · Ataque",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:ataque",
+      "floor": 20
+    },
+    {
+      "id": "enemy.vegeta.heavy",
+      "category": "enemy",
+      "name": "Vegeta · Golpe pesado",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:20:pesado",
+      "floor": 20
+    },
+    {
+      "id": "enemy.kokushibo.charge",
+      "category": "enemy",
+      "name": "Kokushibo · Preparação",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:15:preparacao",
+      "floor": 15
+    },
+    {
+      "id": "enemy.vegeta.charge",
+      "category": "enemy",
+      "name": "Vegeta · Preparação",
+      "trigger": "Intenção inimiga resolvida",
+      "engineId": "inimigo:20:preparacao",
+      "floor": 20
+    }
+  ]
+}

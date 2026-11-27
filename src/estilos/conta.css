@@ -1,0 +1,116 @@
+/* Painel de conta, save e preferências. */
+.painel-conta {
+  display: grid;
+  gap: 22px;
+}
+.painel-conta section {
+  display: grid;
+  gap: 10px;
+}
+.row-start {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.form-conta {
+  display: grid;
+  gap: 10px;
+  max-width: 380px;
+}
+.form-conta label {
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.form-conta input {
+  font: inherit;
+  color: var(--ink);
+  background: #120e1b;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+.form-conta input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.button.arquivo {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.button.arquivo:focus-within {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.button.pequeno {
+  padding: 5px 10px;
+  font-size: 12px;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.status-save {
+  font-size: 13px;
+  padding-left: 16px;
+  position: relative;
+}
+.status-save::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.status-save.ok::before {
+  background: var(--green);
+}
+.status-save.pendente::before {
+  background: var(--gold);
+}
+.status-save.conflito {
+  color: #ffb3a8;
+}
+.status-save.conflito::before {
+  background: var(--rose);
+}
+.conflito-save {
+  border: 1px solid #8a4a52;
+  border-radius: 10px;
+  padding: 14px;
+  background: #2c1a24;
+}
+.aviso {
+  border-left: 3px solid var(--gold);
+  background: #2a2133;
+  padding: 10px 12px;
+  border-radius: 4px 8px 8px 4px;
+}
+.opcoes-animacao {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: grid;
+  gap: 6px;
+}
+.opcoes-animacao legend {
+  padding: 0 6px;
+  font-weight: 800;
+}
+.opcoes-animacao label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.conta-resumo h3 {
+  margin: 0;
+}
+.conta-resumo .status-save {
+  margin-top: 10px;
+}

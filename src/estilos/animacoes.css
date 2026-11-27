@@ -1,0 +1,321 @@
+/* Peças visuais dos efeitos de combate (criadas por src/animacoes/efeitos.ts). */
+.combat-fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  overflow: hidden;
+}
+.combat-fx > * {
+  position: absolute;
+  pointer-events: none;
+}
+.fx-svg {
+  left: 0;
+  top: 0;
+  overflow: visible;
+}
+.fx-luz {
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--c) 30%, transparent 70%);
+  mix-blend-mode: screen;
+}
+.fx-clarao {
+  inset: 0;
+  mix-blend-mode: screen;
+}
+.fx-ceu {
+  inset: 0;
+  background: linear-gradient(180deg, var(--c) 0%, color-mix(in srgb, var(--c) 60%, transparent) 55%, transparent 100%);
+}
+.fx-p {
+  background: var(--c);
+  border-radius: 50%;
+  translate: -50% -50%;
+  box-shadow: 0 0 6px var(--c);
+}
+.fx-p.faisca {
+  border-radius: 4px;
+}
+.fx-p.brasa {
+  background: radial-gradient(circle, #fff3c4, var(--c) 60%);
+}
+.fx-p.floco {
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+.fx-p.floco::before {
+  content: "✻";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--c);
+  font-size: 12px;
+  text-shadow: 0 0 6px var(--c);
+}
+.fx-p.fumaca {
+  background: radial-gradient(circle, color-mix(in srgb, var(--c) 80%, transparent), transparent 70%);
+  box-shadow: none;
+}
+.fx-p.estilhaco {
+  border-radius: 1px;
+  clip-path: polygon(50% 0, 100% 60%, 40% 100%, 0 40%);
+}
+.fx-p.folha {
+  border-radius: 0 70% 0 70%;
+}
+.fx-p.bolha {
+  background: radial-gradient(circle at 35% 35%, #fff9, var(--c) 55%, transparent 72%);
+}
+.fx-p.pena {
+  border-radius: 50% 0;
+}
+.fx-rastro {
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, transparent, var(--c) 30%, #fff 85%, var(--c));
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--c);
+}
+.fx-feixe {
+  transform-origin: 0 50%;
+  border-radius: 40px;
+  background: linear-gradient(180deg, transparent, var(--c) 25%, #fff 50%, var(--c) 75%, transparent);
+  box-shadow: 0 0 28px var(--c);
+  mix-blend-mode: screen;
+}
+.fx-anel {
+  border: 4px solid var(--c);
+  border-radius: 50%;
+  box-shadow:
+    0 0 14px var(--c),
+    inset 0 0 10px var(--c);
+}
+.fx-onda {
+  border-radius: 50%;
+  border-right: 12px solid var(--c);
+  box-shadow: 14px 0 24px -6px var(--c);
+  filter: drop-shadow(0 0 10px var(--c));
+}
+.fx-projetil {
+  will-change: transform;
+}
+.fx-projetil.fantasma {
+  opacity: 0.35;
+  filter: blur(1px);
+}
+.fx-projetil.bala {
+  background: radial-gradient(circle, #fff, var(--c));
+  border-radius: 50%;
+  box-shadow: -10px 0 8px -2px var(--c);
+}
+.fx-projetil.kunai {
+  background: linear-gradient(90deg, #39303f 0 38%, var(--c) 38%);
+  clip-path: polygon(0 42%, 38% 42%, 38% 30%, 100% 50%, 38% 70%, 38% 58%, 0 58%);
+}
+.fx-projetil.agulha {
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent, var(--c));
+  box-shadow: 0 0 6px var(--c);
+}
+.fx-projetil.esfera {
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 20%, var(--c) 55%, transparent 72%);
+  box-shadow: 0 0 18px var(--c);
+}
+.fx-projetil.esfera.grande {
+  box-shadow:
+    0 0 36px var(--c),
+    0 0 12px #fff;
+}
+.fx-projetil.carta {
+  border: 2px solid var(--c);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--c) 30%, transparent);
+  aspect-ratio: 0.7;
+  box-shadow: 0 0 14px var(--c);
+}
+.fx-projetil.mao,
+.fx-projetil.pedaco {
+  border-radius: 45% 45% 40% 40%;
+  background: var(--c);
+  border: 2px solid #6b3f2a;
+}
+.fx-projetil.lanca {
+  height: 6px !important;
+  background: linear-gradient(90deg, #4a1018, var(--c) 70%, #fff);
+  clip-path: polygon(0 35%, 78% 35%, 78% 0, 100% 50%, 78% 100%, 78% 65%, 0 65%);
+  filter: drop-shadow(0 0 6px var(--c));
+}
+.fx-projetil.punho-fogo {
+  border-radius: 40% 60% 60% 40%;
+  background: radial-gradient(circle at 70% 50%, #fff3c4, var(--c) 45%, #b8321a 70%, transparent 75%);
+  box-shadow: 0 0 30px var(--c);
+}
+.fx-projetil.capsula {
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, var(--c));
+  box-shadow: 0 0 10px var(--c);
+}
+.fx-braco {
+  transform-origin: 0 50%;
+  border-radius: 10px;
+  background: var(--c);
+  border: 2px solid #7a3d2c;
+}
+.fx-braco .punho {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  translate: 0 -50%;
+  border-radius: 45%;
+  background: var(--c);
+  border: 2px solid #7a3d2c;
+}
+.fx-circulo {
+  border-radius: 50%;
+  border: 2px solid var(--c);
+  box-shadow:
+    0 0 14px var(--c),
+    inset 0 0 14px var(--c);
+}
+.fx-circulo i,
+.fx-circulo b {
+  position: absolute;
+  inset: 14%;
+  border-radius: 50%;
+  border: 2px dashed var(--c);
+}
+.fx-circulo b {
+  inset: 26%;
+  border-radius: 0;
+  border-style: solid;
+  rotate: 45deg;
+}
+.fx-coluna {
+  width: 40px;
+  height: 120px;
+  transform-origin: 50% 100%;
+  background: linear-gradient(0deg, var(--c), #ffffffcc 60%, transparent);
+  clip-path: polygon(20% 100%, 0 30%, 50% 0, 100% 30%, 80% 100%);
+  filter: drop-shadow(0 0 12px var(--c));
+}
+.fx-espinho {
+  width: 16px;
+  height: 64px;
+  transform-origin: 50% 100%;
+  background: linear-gradient(0deg, #5a4636, #b09a84);
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+.fx-sombra {
+  width: 44px;
+  height: 92px;
+  transform-origin: 50% 100%;
+  background: radial-gradient(ellipse at 50% 30%, #6c3fa0, #1a0b28 70%);
+  border-radius: 40% 40% 10% 10%;
+  filter: drop-shadow(0 0 12px #b07cff);
+}
+.fx-nevoa {
+  inset: -10%;
+  background:
+    radial-gradient(ellipse at 30% 60%, #d9eef4cc, transparent 55%), radial-gradient(ellipse at 70% 40%, #c0e6f2aa, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, #e8f5f8bb, transparent 60%);
+}
+.fx-emboscada {
+  font-size: 58px;
+  color: #291c36;
+  text-shadow: 0 0 14px #c0e6f2;
+  line-height: 1;
+}
+.fx-fantasma {
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px var(--c)) brightness(1.8) saturate(0.4);
+  z-index: 3;
+}
+.fx-numero {
+  z-index: 5;
+  font:
+    900 26px/1 Impact,
+    "Arial Black",
+    system-ui,
+    sans-serif;
+  color: #fff1d6;
+  -webkit-text-stroke: 1.5px #2a1420;
+  text-shadow:
+    0 3px 0 #2a1420,
+    0 0 14px #ffb88a;
+  white-space: nowrap;
+}
+.fx-numero.forte {
+  font-size: 40px;
+  color: #ffe08a;
+  text-shadow:
+    0 4px 0 #2a1420,
+    0 0 22px #ffcf5c;
+}
+.fx-numero.cura {
+  color: #a4ffbe;
+  text-shadow:
+    0 3px 0 #10301c,
+    0 0 12px #6bf2a0;
+}
+.fx-numero.energia {
+  font-size: 16px;
+  color: #d2c0ff;
+}
+.fx-numero.bloqueio,
+.fx-numero.absorvido {
+  font-size: 19px;
+  color: #bfefff;
+  text-shadow:
+    0 2px 0 #10283a,
+    0 0 12px #8bdfff;
+}
+.fx-numero.esquiva,
+.fx-numero.evitado {
+  font-size: 22px;
+  color: #ffe9ab;
+  letter-spacing: 0.06em;
+}
+.fx-numero.nevoa {
+  font-size: 15px;
+  color: #d9eef4;
+}
+.fx-numero.aviso {
+  font-size: 18px;
+  color: #ffe9ab;
+}
+.fx-rotulo {
+  left: 24%;
+  bottom: 14%;
+  z-index: 5;
+  background: #17101fe8;
+  border-left: 3px solid var(--c);
+  padding: 6px 12px;
+  text-transform: uppercase;
+  font:
+    800 clamp(13px, 2.8vw, 22px) / 1.3 system-ui,
+    sans-serif;
+  color: var(--c);
+  max-width: 72%;
+}
+/* Estados da arena durante algumas sequências. */
+.arena.tempo-parado {
+  filter: grayscale(1) contrast(1.15);
+}
+.arena.tempo-parado .heroi {
+  filter: none;
+}
+.heroi.congelado .heroi-svg {
+  filter: drop-shadow(0 0 6px #a8ecff) brightness(1.3) hue-rotate(160deg) saturate(0.6);
+}
+.heroi.fragmentado .heroi-svg {
+  clip-path: polygon(0 0, 100% 0, 100% 34%, 0 46%, 0 54%, 100% 66%, 100% 100%, 0 100%);
+  transform: translateY(-3px);
+}
+.enemy-symbol.derrotado {
+  pointer-events: none;
+}

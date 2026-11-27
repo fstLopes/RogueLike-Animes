@@ -1,0 +1,7 @@
+CREATE TABLE saves (
+  usuario_id INT UNSIGNED NOT NULL PRIMARY KEY,
+  revisao INT UNSIGNED NOT NULL,
+  dados MEDIUMTEXT NOT NULL,
+  atualizado_em DATETIME NOT NULL,
+  CONSTRAINT fk_saves_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
