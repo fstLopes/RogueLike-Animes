@@ -1,0 +1,422 @@
+/* Visual ativo de cada transformação, pelo atributo data-forma do herói.
+   Cada forma muda silhueta, cor, postura e aura. As camadas extras (.acc-*) estão
+   em src/interface/heroi.ts. Os loops param com prefers-reduced-motion, mas a
+   diferença de silhueta continua visível. */
+
+.heroi[data-forma]:not([data-forma=""]) .h-aura {
+  opacity: 1;
+}
+.heroi .acc-caudas path,
+.heroi .acc-kagune path {
+  fill: none;
+  stroke-linecap: round;
+}
+
+/* ---- Gears ---- */
+.heroi[data-forma="forma:gear-2"] {
+  --heroi-corpo: #8a3346;
+  --heroi-borda: #ffb3c0;
+  --aura: #ff9fb1;
+}
+.heroi[data-forma="forma:gear-2"] .h-corpo {
+  transform: translateY(5px) scaleY(0.95);
+  transform-origin: 50% 100%;
+}
+.heroi[data-forma="forma:gear-2"] .acc-vapor {
+  display: inline;
+  fill: #ffe9ee;
+  opacity: 0.55;
+  animation: vapor 1.6s ease-in infinite;
+}
+
+.heroi[data-forma="forma:gear-3"] {
+  --aura: #ffb08a;
+}
+.heroi[data-forma="forma:gear-3"] .acc-punho-gigante {
+  display: inline;
+  fill: var(--heroi-corpo);
+  stroke: #ffb08a;
+  stroke-width: 2;
+}
+.heroi[data-forma="forma:gear-3"] .h-punho {
+  display: none;
+}
+.heroi[data-forma="forma:gear-3"] .h-braco {
+  stroke-width: 16;
+}
+
+.heroi[data-forma="forma:gear-4"] {
+  --heroi-corpo: #4a1820;
+  --heroi-borda: #ff6a7a;
+  --aura: #ff6a7a;
+}
+.heroi[data-forma="forma:gear-4"] .h-corpo {
+  transform: scale(1.16, 1.1);
+  transform-origin: 50% 100%;
+}
+.heroi[data-forma="forma:gear-4"] .h-membro {
+  stroke-width: 14;
+}
+.heroi[data-forma="forma:gear-4"] .acc-marcas,
+.heroi[data-forma="forma:gear-4"] .acc-vapor {
+  display: inline;
+}
+.heroi[data-forma="forma:gear-4"] .acc-marcas {
+  stroke: #120408;
+  stroke-width: 3;
+  fill: #120408;
+}
+.heroi[data-forma="forma:gear-4"] .acc-vapor {
+  fill: #ffe9ee;
+  opacity: 0.5;
+  animation: vapor 2s ease-in infinite;
+}
+.heroi[data-forma="forma:gear-4"] .heroi-svg {
+  animation: quique 0.7s ease-in-out infinite;
+}
+
+.heroi[data-forma="forma:gear-5"] {
+  --heroi-corpo: #f4f1ec;
+  --heroi-borda: #ffffff;
+  --aura: #ffffff;
+}
+.heroi[data-forma="forma:gear-5"] .h-cabelo {
+  display: none;
+}
+.heroi[data-forma="forma:gear-5"] .acc-cabelo-nuvem,
+.heroi[data-forma="forma:gear-5"] .acc-nuvens {
+  display: inline;
+  fill: #ffffff;
+  stroke: #d9d4e8;
+}
+.heroi[data-forma="forma:gear-5"] .acc-nuvens {
+  opacity: 0.75;
+}
+.heroi[data-forma="forma:gear-5"] .h-olho {
+  fill: #2a1420;
+}
+.heroi[data-forma="forma:gear-5"] .heroi-svg {
+  animation: elastico 1.1s ease-in-out infinite;
+}
+
+/* ---- Kurama ---- */
+.heroi[data-forma="forma:manto-da-kurama"] {
+  --heroi-borda: #ff9a3c;
+  --aura: #ff8a1e;
+}
+.heroi[data-forma="forma:manto-da-kurama"] .acc-chamas,
+.heroi[data-forma="forma:manto-da-kurama"] .acc-caudas {
+  display: inline;
+}
+.heroi[data-forma="forma:manto-da-kurama"] .acc-caudas .extra {
+  display: none;
+}
+.heroi[data-forma="forma:manto-da-kurama"] .acc-chamas path,
+.heroi[data-forma="forma:modo-chakra-da-kurama"] .acc-chamas path {
+  fill: #ff8a1e33;
+  stroke: #ff9a3c;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 6px #ff9a3c);
+}
+.heroi[data-forma="forma:manto-da-kurama"] .acc-caudas path,
+.heroi[data-forma="forma:modo-chakra-da-kurama"] .acc-caudas path {
+  stroke: #ff8a1e;
+  stroke-width: 9;
+  opacity: 0.85;
+}
+.heroi[data-forma="forma:manto-da-kurama"] .acc-caudas,
+.heroi[data-forma="forma:modo-chakra-da-kurama"] .acc-caudas {
+  transform-origin: 52px 92px;
+  animation: caudas 2.4s ease-in-out infinite;
+}
+
+.heroi[data-forma="forma:modo-chakra-da-kurama"] {
+  --heroi-corpo: #e8a92a;
+  --heroi-borda: #fff1a8;
+  --aura: #ffd34d;
+}
+.heroi[data-forma="forma:modo-chakra-da-kurama"] .acc-caudas,
+.heroi[data-forma="forma:modo-chakra-da-kurama"] .acc-marcas,
+.heroi[data-forma="forma:modo-chakra-da-kurama"] .acc-chamas {
+  display: inline;
+}
+.heroi[data-forma="forma:modo-chakra-da-kurama"] .acc-caudas path {
+  stroke: #ffd34d;
+}
+.heroi[data-forma="forma:modo-chakra-da-kurama"] .acc-marcas {
+  stroke: #1a0f06;
+  stroke-width: 2;
+  fill: #1a0f06;
+}
+
+/* ---- Super Saiyajin ---- */
+.heroi[data-forma="forma:super-saiyajin"] {
+  --heroi-borda: #ffe36b;
+  --aura: #ffd84a;
+}
+.heroi[data-forma="forma:super-saiyajin"] .h-cabelo {
+  display: none;
+}
+.heroi[data-forma="forma:super-saiyajin"] .acc-cabelo-dourado {
+  display: inline;
+  fill: #ffd84a;
+  stroke: #fff6b0;
+  filter: drop-shadow(0 0 6px #ffd84a);
+}
+.heroi[data-forma="forma:super-saiyajin"] .h-olho {
+  fill: #7ef0e0;
+}
+.heroi[data-forma="forma:super-saiyajin"] .h-aura {
+  animation: aura-picos 0.5s steps(2) infinite;
+}
+
+/* ---- Black Asta ---- */
+.heroi[data-forma="forma:black-asta"] {
+  --heroi-corpo: #120b18;
+  --heroi-borda: #8a7a9a;
+  --aura: #2a1a38;
+}
+.heroi[data-forma="forma:black-asta"] .acc-asa,
+.heroi[data-forma="forma:black-asta"] .acc-chifre {
+  display: inline;
+  fill: #07040a;
+  stroke: #8a7a9a;
+  stroke-width: 1;
+}
+.heroi[data-forma="forma:black-asta"] .acc-asa {
+  transform-origin: 50px 66px;
+  animation: asa 1.8s ease-in-out infinite;
+}
+.heroi[data-forma="forma:black-asta"] .h-olho {
+  fill: #ff4d5e;
+}
+
+/* ---- Amaru ---- */
+.heroi[data-forma="forma:amaru"] {
+  --heroi-corpo: #3a5c94;
+  --heroi-borda: #bfe7ff;
+  --aura: #8fd0ff;
+}
+.heroi[data-forma="forma:amaru"] .h-corpo {
+  transform: scale(1.18);
+  transform-origin: 50% 100%;
+}
+.heroi[data-forma="forma:amaru"] .acc-tambores {
+  display: inline;
+  fill: #ffe86b;
+  stroke: #8fd0ff;
+  stroke-width: 2;
+  transform-origin: 62px 80px;
+  animation: girar 8s linear infinite;
+}
+.heroi[data-forma="forma:amaru"] .anel-tambores {
+  fill: none;
+  stroke: #8fd0ff;
+  stroke-dasharray: 4 6;
+}
+
+/* ---- Leopardo ---- */
+.heroi[data-forma="forma:leopardo-hibrido"] {
+  --heroi-corpo: #a8742c;
+  --heroi-borda: #ffc86a;
+  --aura: #ffc86a;
+}
+.heroi[data-forma="forma:leopardo-hibrido"] .h-corpo {
+  transform: translateY(6px) rotate(5deg);
+  transform-origin: 50% 100%;
+}
+.heroi[data-forma="forma:leopardo-hibrido"] .acc-orelhas,
+.heroi[data-forma="forma:leopardo-hibrido"] .acc-manchas,
+.heroi[data-forma="forma:leopardo-hibrido"] .acc-garras {
+  display: inline;
+  fill: #2a1a08;
+}
+.heroi[data-forma="forma:leopardo-hibrido"] .acc-garras {
+  stroke: #fff1d6;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* ---- Motosserra ---- */
+.heroi[data-forma="forma:forma-motosserra"] {
+  --heroi-borda: #ff6a7a;
+  --aura: #ff4d5e;
+}
+.heroi[data-forma="forma:forma-motosserra"] .acc-serra {
+  display: inline;
+  fill: #c9cdd6;
+  stroke: #ff6a7a;
+  stroke-width: 1;
+  animation: vibrar 0.09s linear infinite;
+}
+.heroi[data-forma="forma:forma-motosserra"] .acc-serra .dentes {
+  fill: none;
+  stroke: #e9edf5;
+  stroke-width: 1.5;
+}
+.heroi[data-forma="forma:forma-motosserra"] .h-cabelo {
+  display: none;
+}
+
+/* ---- Mob 100% ---- */
+.heroi[data-forma="forma:explosao-de-100"] {
+  --heroi-borda: #f3c8ff;
+  --aura: #d38bff;
+}
+.heroi[data-forma="forma:explosao-de-100"] .h-cabelo {
+  display: none;
+}
+.heroi[data-forma="forma:explosao-de-100"] .acc-cabelo-erguido,
+.heroi[data-forma="forma:explosao-de-100"] .acc-espiral {
+  display: inline;
+}
+.heroi[data-forma="forma:explosao-de-100"] .acc-cabelo-erguido {
+  fill: #140e1e;
+  stroke: #f3c8ff;
+}
+.heroi[data-forma="forma:explosao-de-100"] .acc-espiral {
+  fill: none;
+  stroke: #e7b6ff;
+  stroke-width: 2;
+  stroke-dasharray: 10 8;
+  transform-origin: 62px 78px;
+  animation: girar 2.4s linear infinite;
+  filter: drop-shadow(0 0 4px #d38bff);
+}
+
+/* ---- Kagune ---- */
+.heroi[data-forma="forma:kagune-rinkaku"] {
+  --aura: #c3263a;
+}
+.heroi[data-forma="forma:kagune-rinkaku"] .acc-kagune {
+  display: inline;
+  transform-origin: 52px 88px;
+  animation: tentaculos 1.6s ease-in-out infinite;
+}
+.heroi[data-forma="forma:kagune-rinkaku"] .acc-kagune path {
+  stroke: #c3263a;
+  stroke-width: 8;
+  filter: drop-shadow(0 0 5px #ff4d5e);
+}
+.heroi[data-forma="forma:kagune-rinkaku"] .h-olho {
+  fill: #ff2a3e;
+}
+
+/* ---- Modo Sábio ---- */
+.heroi[data-forma="forma:modo-sabio"] {
+  --heroi-borda: #9ef0b0;
+  --aura: #6fd88a;
+}
+.heroi[data-forma="forma:modo-sabio"] .acc-sabio {
+  display: inline;
+  fill: #ff8a1e;
+}
+.heroi[data-forma="forma:modo-sabio"] .h-olho {
+  fill: #ffd34d;
+}
+.heroi[data-forma="forma:modo-sabio"] .h-braco {
+  d: path("M72 62 L82 76 L94 78");
+}
+.heroi[data-forma="forma:modo-sabio"] .h-aura {
+  animation: respirar 3s ease-in-out infinite;
+}
+
+@keyframes vapor {
+  from {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(-18px);
+    opacity: 0;
+  }
+}
+@keyframes quique {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@keyframes elastico {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.06, 0.94);
+  }
+  60% {
+    transform: scale(0.95, 1.06) translateY(-4px);
+  }
+}
+@keyframes caudas {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-7deg);
+  }
+}
+@keyframes aura-picos {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(1.08);
+  }
+}
+@keyframes asa {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-6deg);
+  }
+}
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes vibrar {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0.6px, -0.6px);
+  }
+}
+@keyframes tentaculos {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+}
+@keyframes respirar {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroi *,
+  .heroi .heroi-svg {
+    animation: none !important;
+  }
+}
+.arena.reduzido .heroi *,
+.arena.reduzido .heroi .heroi-svg {
+  animation: none !important;
+}

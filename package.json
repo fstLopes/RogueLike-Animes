@@ -1,0 +1,33 @@
+{
+  "name": "torre-do-eclipse",
+  "private": true,
+  "version": "2.1.0",
+  "description": "Roguelike por turnos de navegador: 20 andares, rotas, lojas, maestria e transformações.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.navegador.json",
+    "test": "tsx --test \"tests/**/*.test.ts\"",
+    "verificar": "npm run typecheck && npm test",
+    "api": "php -S localhost:8080 -t server/public server/public/index.php",
+    "api:migrar": "php server/bin/migrar.php",
+    "api:test": "php server/tests/executar.php",
+    "test:navegador": "tsx tests/navegador/animacoes.navegador.ts",
+    "test:online": "tsx tests/navegador/online.navegador.ts",
+    "servir:completo": "php -S localhost:8080 -t dist server/public/index.php",
+    "test:fluxo": "tsx tests/navegador/fluxo.navegador.ts",
+    "capturar-telas": "tsx tests/navegador/capturar-telas.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "playwright": "^1.50.0",
+    "tsx": "^4.20.0",
+    "typescript": "^6.0.0",
+    "vite": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

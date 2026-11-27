@@ -1,0 +1,313 @@
+/* Mochila, ficha do item e perfil. */
+.bag-head {
+  padding: clamp(18px, 3vw, 28px) clamp(14px, 3vw, 28px) 18px;
+  border-bottom: 1px solid var(--borda);
+  background: radial-gradient(ellipse at 100% 0%, #a995ff26, transparent 65%), linear-gradient(180deg, #1a2038, var(--painel));
+}
+.bag-head h2 {
+  margin: 4px 0 8px;
+  text-transform: uppercase;
+  font-size: clamp(34px, 5vw, 50px);
+}
+.bag-head .row {
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.bag-head p {
+  color: var(--texto-2);
+  font-size: 14px;
+}
+.bag-body {
+  padding: clamp(14px, 2.6vw, 24px);
+}
+.bag-tools {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.bag-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.bag-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  background: var(--painel);
+  color: var(--texto-2);
+  font-size: 13px;
+  font-weight: 600;
+}
+.bag-tab:hover {
+  border-color: var(--borda-forte);
+  color: var(--texto);
+}
+.bag-tab[aria-selected="true"] {
+  background: var(--ouro);
+  border-color: var(--ouro);
+  color: #22160a;
+  font-weight: 800;
+}
+.bag-tab b {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: #ffffff10;
+}
+.bag-tab[aria-selected="true"] b {
+  background: #22160a1f;
+}
+.bag-caption {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.bag-caption h3 {
+  font: 800 20px/1 var(--fonte-titulo);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.bag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 12px;
+}
+:where(.loot) {
+  --rarity: var(--r-comum);
+}
+.loot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--rarity) 35%, var(--borda));
+  border-left: 4px solid var(--rarity);
+  border-radius: 12px;
+  background: linear-gradient(160deg, var(--painel-2), var(--painel));
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.loot.brilho {
+  box-shadow: 0 0 24px color-mix(in srgb, var(--rarity) 24%, transparent);
+}
+.loot.r3.brilho {
+  background: linear-gradient(160deg, #33281a, #1a1d2c 55%);
+}
+.loot.r4.brilho {
+  background: linear-gradient(160deg, #3a1838, #1a1a30 55%);
+}
+.loot.equipado {
+  outline: 1px solid #68ddb355;
+  outline-offset: -1px;
+}
+.loot-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.loot .item-art {
+  width: 64px;
+  height: 64px;
+  border-color: color-mix(in srgb, var(--rarity) 60%, var(--borda));
+}
+.loot-selos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.worn {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: #183a33;
+  border: 1px solid #68ddb366;
+  color: var(--cura);
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.loot-nome {
+  display: grid;
+  gap: 2px;
+}
+.loot h3 {
+  font-size: 18px;
+  line-height: 1.2;
+}
+.melhoria {
+  color: var(--ouro);
+}
+.loot p {
+  color: var(--texto-2);
+  font-size: 13px;
+}
+.ver-ficha {
+  color: var(--magia);
+  font-weight: 600;
+}
+.mastery {
+  height: 6px;
+  margin-top: 4px;
+  border-radius: 6px;
+  background: #0b0e18;
+  border: 1px solid var(--borda);
+  overflow: hidden;
+}
+.mastery i {
+  display: block;
+  height: 100%;
+  background: var(--rarity);
+}
+.loot footer {
+  margin-top: auto;
+  padding-top: 4px;
+  position: relative;
+  z-index: 1;
+}
+.loot footer .button {
+  width: 100%;
+}
+.inspect-card .inspect-link {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+.inspect-card:hover,
+.inspect-card:focus-within {
+  border-color: var(--rarity);
+}
+.empty-bin {
+  padding: 30px 16px;
+  text-align: center;
+  border: 1px dashed var(--borda-forte);
+  border-radius: 12px;
+  color: var(--texto-2);
+}
+.empty-bin b {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--texto);
+}
+
+/* Ficha do item */
+:where(.item-sheet) {
+  --rarity: var(--r-comum);
+}
+.item-sheet {
+  display: grid;
+  gap: 18px;
+  padding: clamp(16px, 3vw, 28px);
+  border-top: 4px solid var(--rarity);
+  background: radial-gradient(ellipse at 0% 0%, color-mix(in srgb, var(--rarity) 12%, transparent), transparent 55%);
+}
+.sheet-top {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sheet-top .item-art {
+  width: clamp(96px, 22vw, 150px);
+  height: auto;
+  aspect-ratio: 1;
+  border: 2px solid var(--rarity);
+  box-shadow: 0 0 30px color-mix(in srgb, var(--rarity) 30%, transparent);
+}
+.sheet-titulo {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  flex: 1 1 220px;
+}
+.sheet-titulo h2 {
+  overflow-wrap: anywhere;
+}
+.sheet-descricao {
+  font-size: 16px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr));
+  gap: 8px;
+}
+.facts div,
+.moves li {
+  padding: 10px 12px;
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+  background: var(--painel);
+}
+.facts dt {
+  font-size: 12px;
+  color: var(--texto-2);
+}
+.facts dd {
+  margin: 2px 0;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.moves {
+  display: grid;
+  gap: 7px;
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+.item-sheet section h3 {
+  font: 800 19px/1 var(--fonte-titulo);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Perfil */
+.slot-perfil {
+  min-height: 92px;
+}
+.slot-perfil.vazio {
+  border-style: dashed;
+  background: transparent;
+}
+.peca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.peca .item-art {
+  width: 44px;
+  height: 44px;
+  border-color: var(--rarity);
+}
+.peca strong {
+  font-size: 14px;
+}
+.atributo-perfil .valor {
+  font: 800 40px/1 var(--fonte-titulo);
+  color: var(--ouro);
+}
+#painel-perfil h3 {
+  font: 800 22px/1 var(--fonte-titulo);
+  text-transform: uppercase;
+}
+
+@media (max-width: 560px) {
+  .bag-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .bag-tab {
+    padding: 6px 9px;
+  }
+}

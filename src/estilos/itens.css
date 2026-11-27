@@ -1,0 +1,22 @@
+/* Ícones dos itens. Cada folha é uma grade 4 × 4 em src/assets/atlas;
+   o recorte é escolhido por background-position (ver src/dados/arte.ts). */
+.item-art {
+  display: inline-block;
+  width: 54px;
+  height: 54px;
+  flex: none;
+  border-radius: 12px;
+  background-color: #1d1528;
+  background-image: url("../assets/atlas/base.jpg");
+  background-size: 400% 400%;
+  border: 1px solid #594663;
+}
+.item-art.relic {
+  background-image: url("../assets/atlas/relic.jpg");
+}
+.item-art.uniform {
+  background-image: url("../assets/atlas/uniform.jpg");
+}
+.item-art.reference {
+  background-image: url("../assets/atlas/reference.jpg");
+}

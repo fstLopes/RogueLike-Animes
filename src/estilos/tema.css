@@ -1,0 +1,320 @@
+/* Tema "Eclipse": base preto-azulada, violeta para energia e magia,
+   dourado quente para ações principais e conquistas. Todas as cores do jogo
+   saem destas variáveis. */
+:root {
+  color-scheme: dark;
+
+  --fundo: #0b0e18;
+  --painel: #141929;
+  --painel-2: #1c2236;
+  --painel-3: #232a42;
+  --borda: #303850;
+  --borda-forte: #444e6c;
+  --texto: #f4f1ff;
+  --texto-2: #b7bdd4;
+  --texto-3: #8b92ad;
+
+  --ouro: #ffc779;
+  --ouro-escuro: #3a2a12;
+  --magia: #a995ff;
+  --magia-escura: #2a2350;
+  --vida: #ff727e;
+  --cura: #68ddb3;
+
+  /* Raridades */
+  --r-comum: #b7bdd4;
+  --r-rara: #6fb7ff;
+  --r-epica: #a995ff;
+  --r-lendaria: #ffc779;
+  --r-mitica: #ff5fc8;
+
+  /* Acentos das salas */
+  --sala-evento: #7fd6ff;
+  --sala-loja: #ffc779;
+  --sala-descanso: #68ddb3;
+
+  --fonte-titulo: "Barlow Condensed", "Roboto Condensed", "Arial Narrow", "Liberation Sans Narrow", "DejaVu Sans Condensed", sans-serif;
+  --fonte-texto: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --raio: 12px;
+  --raio-pequeno: 8px;
+  --sombra: 0 14px 34px #04060d99;
+  --corte: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+
+  /* Nomes antigos usados por módulos de efeitos e conta */
+  --ink: var(--texto);
+  --muted: var(--texto-2);
+  --line: var(--borda);
+  --gold: var(--ouro);
+  --green: var(--cura);
+  --rose: var(--vida);
+  --violet: var(--magia);
+  --panel: var(--painel);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  background: var(--fundo);
+  min-height: 100%;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--texto);
+  font: 15px/1.5 var(--fonte-texto);
+  /* Fundo contínuo: os brilhos ficam no topo e se dissolvem na cor de base,
+     que é a mesma do html (sem faixa ou emenda no fim da página). */
+  background:
+    radial-gradient(1100px 620px at 78% -120px, #a995ff1f, transparent 62%),
+    radial-gradient(800px 460px at 6% 420px, #ffc7790d, transparent 60%), linear-gradient(180deg, #0d1120 0, var(--fundo) 900px);
+  background-repeat: no-repeat;
+  background-color: var(--fundo);
+  overflow-x: hidden;
+}
+h1,
+h2,
+h3,
+p,
+dl,
+dd,
+ol,
+ul {
+  margin: 0;
+}
+h1,
+h2 {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+h2 {
+  font-size: clamp(28px, 4.6vw, 46px);
+}
+h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+small,
+.soft {
+  color: var(--texto-2);
+}
+.help {
+  font-size: 13px;
+  color: var(--texto-2);
+}
+.eyebrow {
+  font: 700 12px/1.2 var(--fonte-texto);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ouro);
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+.hide {
+  display: none;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---- Botões ---- */
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+:focus-visible {
+  outline: 2px solid var(--ouro);
+  outline-offset: 3px;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 9px 16px;
+  border-radius: var(--raio-pequeno);
+  border: 1px solid var(--borda-forte);
+  background: var(--painel-2);
+  color: var(--texto);
+  font-weight: 650;
+  text-align: center;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s,
+    transform 0.1s;
+}
+.button:not(:disabled):hover {
+  border-color: var(--ouro);
+  background: var(--painel-3);
+}
+.button:not(:disabled):active {
+  transform: translateY(1px);
+}
+.button:disabled {
+  opacity: 0.5;
+}
+.button.primary {
+  background: linear-gradient(115deg, #ffd99c, var(--ouro) 55%, #f3a95c);
+  border-color: #ffd99c;
+  color: #22160a;
+  font-weight: 800;
+  box-shadow: 0 6px 18px #ffc77933;
+}
+.button.primary:not(:disabled):hover {
+  background: linear-gradient(115deg, #ffe4b5, #ffd08f 55%, #f6b56d);
+  border-color: #fff0d2;
+}
+.button.secundario {
+  background: transparent;
+  border-color: var(--borda-forte);
+  color: var(--texto-2);
+}
+.button.secundario:not(:disabled):hover {
+  color: var(--texto);
+  background: #ffffff08;
+}
+.button.grande {
+  min-height: 50px;
+  padding: 12px 26px;
+  font-size: 17px;
+}
+
+/* ---- Painéis ---- */
+.panel {
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background: linear-gradient(180deg, var(--painel-2), var(--painel) 140px);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+  min-width: 0;
+}
+.pad {
+  padding: 18px;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 12px;
+  color: var(--texto-2);
+  white-space: nowrap;
+}
+
+/* ---- Barras ---- */
+.medidor {
+  display: grid;
+  gap: 5px;
+}
+.meter-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--texto-2);
+}
+.meter-label strong {
+  color: var(--texto);
+  font: 700 15px/1 var(--fonte-texto);
+  font-variant-numeric: tabular-nums;
+}
+.meter {
+  height: 9px;
+  background: #0b0e18;
+  border: 1px solid var(--borda);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.meter i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #d9505f, var(--vida));
+  transition: width 0.25s ease-out;
+}
+.meter.energy i {
+  background: linear-gradient(90deg, #7a64f0, var(--magia));
+}
+.meter.exp i {
+  background: linear-gradient(90deg, #e9a14d, var(--ouro));
+}
+.meter.inimigo i {
+  background: linear-gradient(90deg, #b33a56, #ff8a7a);
+}
+
+/* ---- Eclipse: símbolo do jogo, em vários tamanhos ---- */
+.eclipse {
+  --tam: 40px;
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: var(--tam);
+  height: var(--tam);
+  border-radius: 50%;
+  isolation: isolate;
+  background: radial-gradient(circle at 38% 36%, #1a2038 0%, #070912 68%);
+  box-shadow:
+    0 0 0 calc(var(--tam) * 0.03) #ffe0ad,
+    0 0 calc(var(--tam) * 0.22) calc(var(--tam) * 0.04) #ffc779aa,
+    0 0 calc(var(--tam) * 0.7) calc(var(--tam) * 0.18) #a995ff40;
+}
+.eclipse::before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--tam) * -0.28);
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, #ffc77955 0deg 2deg, transparent 2deg 11deg);
+  mask: radial-gradient(circle, transparent 54%, #000 58%, transparent 72%);
+  z-index: -1;
+}
+.eclipse::after {
+  content: "";
+  position: absolute;
+  width: 16%;
+  height: 16%;
+  right: 8%;
+  top: 6%;
+  border-radius: 50%;
+  background: #fff4dc;
+  box-shadow: 0 0 calc(var(--tam) * 0.16) calc(var(--tam) * 0.05) #ffe0ad;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .eclipse.girando::before {
+    animation: coroa 40s linear infinite;
+  }
+}
+@keyframes coroa {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
